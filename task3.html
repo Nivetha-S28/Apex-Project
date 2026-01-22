@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Chocolate Web Page🍫</title>
+
+<style>
+    body {
+        background: #3E2723;
+        color: #fff3e0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    header {
+        background: #5D4037;
+        padding: 30px;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px #2e1b0b;
+    }
+
+    
+    h2 {
+        font-size: 2rem;
+        margin-top: 25px;
+    }
+
+    @media (max-width: 600px) {
+        header {
+            font-size: 2rem;
+        }
+        #quizContainer, #carousel, #apiSection {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (min-width: 601px) and (max-width: 1024px) {
+        header {
+            font-size: 2.2rem;
+        }
+    }
+
+    
+    .quiz-btn {
+        background: #6d4c41;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .quiz-btn:hover {
+        background: #795548;
+    }
+
+    
+    #carousel img {
+        width: 80%;
+        border-radius: 15px;
+        margin-top: 15px;
+    }
+
+    .carousel-btn {
+        margin: 10px;
+        padding: 8px 14px;
+        background: #6d4c41;
+        border: none;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .carousel-btn:hover {
+        background: #795548;
+    }
+
+    
+    #dogImage {
+        width: 60%;
+        margin-top: 10px;
+        border-radius: 12px;
+    }
+</style>
+</head>
+<body>
+
+<header>TAKE SWEET AND HAVE FUN🍫 </header>
+
+
+<section id="quizContainer">
+    <h2>Interactive Quiz 🍬</h2>
+    <p id="quizQuestion">What is 4 × 5</p>
+    <button class="quiz-btn" onclick="checkAnswer(25)">25</button>
+    <button class="quiz-btn" onclick="checkAnswer(20)">20</button>
+    <p id="quizResult"></p>
+</section>
+
+
+<section id="carousel">
+    <h2>Chocolate Carousel 🍭</h2>
+    <button class="carousel-btn" onclick="prevImg()">◀ Prev</button>
+    <button class="carousel-btn" onclick="nextImg()">Next ▶</button><br>
+    <img id="carouselImage" src="https://images.unsplash.com/photo-1551024709-8f23befc6e78?auto=format&fit=crop&w=500" alt="Chocolate">
+</section>
+
+
+<section id="apiSection">
+    <h2>Fetch API Fun 🦮</h2>
+    <button class="quiz-btn" onclick="fetchDogImage()">Get Random Dog</button>
+    <div id="apiResult"></div>
+</section>
+
+<script>
+    // ===== Step 2A: Quiz Logic =====
+    function checkAnswer(answer) {
+        const resultText = answer === 20 ? "🎉 Correct!" : "❌ Try Again!";
+        document.getElementById("quizResult").textContent = resultText;
+    }
+
+    
+    const carouselImgs = [
+        "https://images.unsplash.com/photo-1551024709-8f23befc6e78?auto=format&fit=crop&w=500",
+        "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=500",
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500"
+    ];
+    let currentIndex = 0;
+
+    function nextImg() {
+        currentIndex = (currentIndex + 1) % carouselImgs.length;
+        document.getElementById("carouselImage").src = carouselImgs[currentIndex];
+    }
+
+    function prevImg() {
+        currentIndex = (currentIndex - 1 + carouselImgs.length) % carouselImgs.length;
+        document.getElementById("carouselImage").src = carouselImgs[currentIndex];
+    }
+
+
+    async function fetchDogImage() {
+        try {
+            const res = await fetch("https://dog.ceo/api/breeds/image/random");
+            const data = await res.json();
+            document.getElementById("apiResult").innerHTML =
+                `<img id="dogImage" src="${data.message}" alt="Random Dog" />`;
+        } catch (e) {
+            document.getElementById("apiResult").textContent = "Error fetching API 💥";
+        }
+    }
+</script>
+
+</body>
+</html>
