@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #fff5e6;
+    color: #4b2e2e;
+}
+
+header {
+    background-color: #5a2d0c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #7b3f00;
+}
+
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #5a2d0c;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background-color: #7b3f00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #5a2d0c;
+}
+
+.products {
+    padding: 30px;
+    text-align: center;
+}
+
+.product-card {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.about, .contact {
+    padding: 30px;
+    text-align: center;
+}
+
+footer {
+    background-color: #5a2d0c;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .product-card {
+        width: 90%;
+    }
+}
